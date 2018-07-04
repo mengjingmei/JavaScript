@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function的原型</title>
+    <script>
+        //函数的原型链：p--->f()--->Object.prototype--->null
+        //Function.prototype 是一个空函数f()
+        var p = new Function("a","b","console.log(a+b)");
+        console.log(p);
+        console.log(p.__proto__);//f()
+        console.log(p.__proto__.__proto__);//Object.prototype
+        console.log(p.__proto__.__proto__.__proto__);//null
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

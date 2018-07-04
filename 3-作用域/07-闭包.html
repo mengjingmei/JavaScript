@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+    <script>
+        /********闭包*********
+         * 1、定义：一个具有封闭的，对外不公开的结构。
+         * 2、原理：作用域原则，上级作用域无法直接访问下级作用域
+         * 3、js中的闭包就是函数
+         * 4、闭包要解决的问题：让外部间接访问内部数据
+         * 5、作用：可以通过闭包返回的函数或方法，来修改函数内部的变量
+         */
+
+        //1、闭包基本模式
+        //在n级函数中，定义一个修改n级变量的n+1级函数，再返回这个n+1级函数。
+        //这样在n级作用域就可以修改n级函数内部的变量了
+        function fn() {
+            var num = 123;
+            return function (a) {
+                if(a !== undefined){
+                    num = a;
+                    return num;
+                }else{
+                    //如果不传参，代表要获取这个值，直接return
+                    return num;
+                }
+
+
+            };
+        }
+        var func = fn();
+        console.log(func(1));;//这样num=1; 在外部就修改了函数内部的数据了
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

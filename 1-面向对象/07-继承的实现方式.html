@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承的实现方式</title>
+    <script>
+        var o = {};
+        var obj = {
+            name:"张三",
+            age: 18,
+            sayHello: function () {
+                console.log("hello");
+            }
+        }
+        function Person(name,age) {
+            this.name = name;
+        }
+
+        /*************1、混入式继承，mixin***********
+         * 利用对象的动态特性给对象添加别的对象的成员
+         */
+        for(var key in obj) {
+            o[key] = obj.key;
+        }
+
+        /*************2、原型继承***************
+         * 利用对象可以共享原型中的成员.
+         * 2.1 给原型添加新成员，2.2替换原型 2.3 混入式的方式
+         */
+
+
+        /************3、经典继承****************
+         * Object.create(obj)
+         * 这个方法是ES5提出的，存在兼容性问题
+         */
+        var obj = {
+            name:"张三"
+        }
+        //兼容性处理
+        //自定义一个create
+        function create(obj) {
+            //浏览器支持
+            if(Object.create) {
+                return Object.create(obj);
+            }
+            //浏览器不支持
+            else {
+                function F() {
+                }
+                F.prototype = obj;
+                return new F();
+            }
+        }
+        //调用
+        var a = create(obj);
+        console.log(a.name);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

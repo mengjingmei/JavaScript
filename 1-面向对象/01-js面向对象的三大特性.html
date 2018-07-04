@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象的三大特性</title>
+    <script>
+        /******************封装**********************
+         * 将一些属性、方法、对象等封装在一起成为一个整体的对象
+         *
+         */
+        var obj = {
+            name: "mjm",
+            age: 17,
+            sayHello: function () {
+                console.log("hello world!");
+            }
+        }
+        /********************继承********************
+         * js中的对象继承指的是一个对象使用另一个对象的方法和属性。
+         */
+        //var obj1 = {};
+        var obj1 = new Object();
+        //混入式继承
+        for(var key in obj) {
+            //给obj1添加obj中的属性和方法
+            obj1[key] = obj[key];   //或obj[key];  //关联数组
+            //obj1.key = obj.key;   //或obj[key];  用obj1.key添加新属性，只会添加属性名为'key'的属性。
+        }
+        obj1.sayHello();
+        /*******************多态*******************
+         * 在弱语言js中没有多态。
+         */
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

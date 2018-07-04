@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型的使用方法</title>
+    <script>
+        function Animal(name,type) {
+            this.name = name;
+            this.type = type;
+        }
+        //原型的使用方法
+        //1、利用对象的动态特性给原型添加成员（针对于添加少量成员）
+            //给原型添加一个方法属性
+            Animal.prototype["dark"] = function () {
+                console.log("叫。。。");
+            }
+            //给原型添加一个值类型属性
+            Animal.prototype.color = "yellow";  //值类型的属性
+            var eatObj = {
+                vegan:"青菜",
+                meat:"骨头"
+            }
+            //给原型添加一个引用类型属性
+            Animal.prototype.eat = eatObj;  //引用数据类型的属性
+
+        var a1 = new Animal("大柴","dog");
+
+        a1.dark(); //叫。。
+        //对于值类型属性
+            //实例访问对象属性时，没有的话，再问原型要
+                console.log(a1.color);//yellow
+            // 但是设置属性时，自身有的话自己赋值，没有的话，直接动态添加属性，不会去原型中修改
+                a1.color = "red";
+                console.log(a1.color);//red
+                var a3 = new Animal("大柴","dog");
+                console.log(a3.color);//yellow
+
+        //对于引用数据类型属性
+            //实例访问对象属性时，没有的话，再问原型要
+                console.log(a1.eat.meat);//骨头
+            //引用对象赋值时，会修改圆形中属性值
+                a1.eat.meat = "肥肉";
+                //上面一句可以拆分为以下：
+                    // var temp = a1.eat;  //此时 是访问对象属性时，没有的话，再问原型要到了meat
+                    // temp.meat = "肥肉";
+                //a1.eat = {}; //这样是给a1添加了一个eat引用属性，而不是修改了原型中的eat
+                console.log(a1.eat.meat);//肥肉
+                var a4 = new Animal("大柴","dog");
+                console.log(a4.eat.meat);//肥肉
+
+        //2、直接替换原型对象（添加多个成员使用）
+            //存在问题：替换原型前实例化的对象访问的原型对象
+            // 和替换后实例化的对象访问的原型对象 不是同一个原型对象了。替换前的原型对象被抛弃了，
+            //但是替换前创造的实例还是访问的原型还是被抛弃原型的方法
+        Animal.prototype = {
+            msg:function () {
+                console.log("hahha");
+            }
+        };
+        var a2 = new Animal("小菜","dog");
+
+        a2.msg();//hahha
+        a1.dark();//叫。。。
+        // a2.dark();//报错
+        // a1.msg();//报错
+        console.log(a1.color);//red
+        console.log(a2.color);//undefined
+        console.log(a3.color);//yellow
+        console.log(a1.eat.meat);//肥肉
+        console.log(a4.eat.meat);//肥肉
+
+        //以上，所以，一般情况下不会将属性放到原型中去，只会将需要共享的方法放到原型中
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

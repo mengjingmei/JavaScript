@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>缓存</title>
+    <script>
+        //缓存：cache
+        function createCache() {
+            var cache = {};
+            return function (key,value) {
+                //如果传了value，说明是更新
+                if(!undefined == value) {
+                    cache[key]= value;
+                    return cache[key];
+                }
+                else {
+                    return cache[key];
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

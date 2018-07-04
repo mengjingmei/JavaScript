@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>监听者</title>
+</head>
+<body>
+
+<script>
+    //监听者模式
+
+    var jianTingZhe = {
+        //听众列表
+        listeners: {
+            birdFly: [],
+            birdRotate: [],
+            birdDie: []
+        },
+        //监听到小鸟飞的时候告诉所有监听者，让监听者做相应的处理
+        triggerBirdFly: function () {
+            this.listeners.birdFly.forEach( function (listen) {
+                listen();
+            });
+        },
+    //监听到小鸟旋转的时候告诉所有监听者，让监听者做相应的处理
+        triggerBirdRotate: function () {
+            this.listeners.birdRotate.forEach( function (listen) {
+                listen();
+            });
+        },
+        //监听到小鸟撞死的时候告诉所有监听者，让监听者做相应的处理
+        triggerBirdDie: function () {
+            //遍历每一个监听者，执行监听者的方法
+            this.listeners.birdDie.forEach( function (listen) {
+                listen();
+            });
+        }
+
+    }
+    //为小鸟飞的时候添加监听者处理函数
+    jianTingZhe.listeners.birdFly.push(function () {
+        console.log("birdFly111");
+    });
+    jianTingZhe.listeners.birdFly.push(function () {
+        console.log("birdFly222");
+    });
+    jianTingZhe.listeners.birdFly.push(function () {
+        console.log("birdFly333");
+    });
+
+    //为小鸟旋转的时候添加监听者处理函数
+    jianTingZhe.listeners.birdRotate.push(function () {
+        console.log("birdRotate111");
+    });
+    jianTingZhe.listeners.birdRotate.push(function () {
+        console.log("birdRotate222");
+    });
+    jianTingZhe.listeners.birdRotate.push(function () {
+        console.log("birdRotate333");
+    });
+
+    //为小鸟撞死的时候添加监听者处理函数
+    jianTingZhe.listeners.birdDie.push(function () {
+        console.log("birdRotate111");
+    });
+    jianTingZhe.listeners.birdDie.push(function () {
+        console.log("birdRotate222");
+    });
+    jianTingZhe.listeners.birdDie.push(function () {
+        console.log("birdRotate333");
+    });
+
+    //谁调用谁就是听众
+
+
+    //
+
+    //这是一个模块 相当于一个听众
+    (function (w) {
+        //为小鸟飞的时候添加监听者处理函数
+        jianTingZhe.listeners.birdFly.push(function () {
+            console.log("birdFly111");
+        });
+    })(window);
+
+    //这是又一个模块 相当于另一个听众
+    (function (w) {
+        //为小鸟飞的时候添加监听者处理函数
+        jianTingZhe.listeners.birdFly.push(function () {
+            console.log("birdFly111");
+        });
+    })(window);
+    //监听到小鸟飞走了
+    jianTingZhe.triggerBirdDie();
+</script>
+</body>
+</html>

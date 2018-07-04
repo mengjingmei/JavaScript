@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eval</title>
+    <script>
+        //eval函数 可以将字符串转换成js代码，并执行,存在安全性问题，不推荐使用
+        var str = "var a=10;";
+        eval(str);
+        console.log(a);//10
+
+        //eval解析json时，会将{}解析为代码块，而不是对象，所以解析json时，需要在前面加上var obj =
+        var jsonStr = '{"name":"mjm","age":17}';
+        //或者将json字符串加上（）
+        var jsonStr1 = '({"name":"mjm","age":17})';
+
+        eval('var json = ' + jsonStr);
+        var json1 = eval(jsonStr1);
+
+        console.log(json);
+        console.log(json1);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型</title>
+    <script>
+        //创建一个函数function时，系统会自动给函数创建一个对象，即原型。
+        // 访问原型对象方法：Person.prototype
+        // 构造函数创建的所有对象都能访问到原型对象中的方法，
+        // 并且所有创建的对象共享该原型对象中的方法。
+        function Person(name,age,gender) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        }
+        //共享的方法，都添加到原型对象方法中
+        Person.prototype.sayHello = function () {
+            console.log("你好，我是" + this.name);
+        }
+        //或
+        /*
+        Person.prototype["sayHello"] = function () {
+            console.log("你好，我是" + this.name);
+        }
+        */
+        //实例化---通过构造函数创建对象的过程
+        //实例---构造函数创建出来的对象是该构造函数的一个实例
+        var p = new Person("刘德华",19,"male");  //实例化一个对象，p是Person的一个实例
+        p.sayHello();
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

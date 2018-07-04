@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数创建三种方式</title>
+
+    <script type="text/template" id="funcContent">
+        var sum = 0;
+        for(var i=0; i<arr.length; i++){
+            sum += arr[i];
+        }
+        return sum;
+    </script>
+
+    <script>
+        //1、直接声明函数
+        function funcName(/*参数列表*/) {
+            //    执行代码
+        }
+
+        //2、函数表达式
+        var fn = function () {
+            //    执行代码
+        };
+
+        //3、函数构造函数创建Function
+        var func = new Function(/*参数列表*/);
+        /*** Function（）参数说明：*****
+         * 1、什么都不传：创建一个空函数
+         * 2、只传一个参数：这个参数就是函数体
+         * 3、多个参数：最后一个参数表示函数，前面的参数是这个函数的参数
+         *
+         */
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

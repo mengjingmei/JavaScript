@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function fnStudy() {
+            console.log("好好学习，天天向上");
+        }
+        function Student(name) {
+            this.name = name;
+            // this.study = function () {
+            //     console.log("好好学习，天天向上"); //相同的函数会在内存中创建多次，浪费内存
+            // };
+            this.study = fnStudy; //用全局变量函数，这样内存浪费问题解决了但是增加全局变量，造成污染，并且结构混乱，
+            // 因此引入了原型
+        }
+        var stu1 = new Student("MJM");
+        var stu2 = new Student("MJM");
+        var stu3 = new Student("MJM");
+    </script>
+</head>
+<body>
+
+</body>
+</html>

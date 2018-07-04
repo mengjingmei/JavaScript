@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建对象</title>
+    <script>
+        //方式一：对象字面量
+        //复用性差，创建多个对象时，冗余度太高。
+        var obj = {
+            name: "韩东君",
+            role: "演员",
+            fn: function () {
+                console.log("帅帅帅");
+            }
+        }
+        //方式二：使用内置构造函数Object
+        var obj1 = new Object();
+        obj1.name = "刘亦菲";
+        obj1.role = "演员";
+        obj1.fn = function () {
+            console.log("美美哒");
+        }
+
+        //方式三：封装简单的工厂函数（不推荐使用）
+        function createActor(actorName,role) {
+            var obj = new Object();
+            obj.name = actorName;
+            obj.role = role;
+            obj.fn = function () {
+                console.log("美美哒");
+            }
+            return obj;
+        }
+        var obj2 = createActor("胡歌","actor");
+        var obj3 = createActor("杨幂","actor");
+
+        //方式四：自定义构造函数 !!!!!
+            //构造函数的函数名首字母要大写，以区别于普通函数
+            //执行过程：1、使用new关键字在heap中创建一个对象
+            //         2、调用构造函数，将创建出的对象赋值给构造函数的this
+            //         3、在构造函数内，使用this为新创建的对象增加成员
+            //         4、返回这个对象
+        //对象是一个无序的键值对集合
+        function Person(name,age,sayContent) {
+            this.name = name;
+            this.age = age;
+            this.sayHello = sayContent;
+            //一般不会自己写return
+            //如果自己在这儿写return 空值/数据/null，返回的应然是创建的对象
+            //return {}; //这样写一个对象的话返回的就是这个对象，而不是创建的对象
+        }
+
+        var p = new Person("MJM",17,function () {
+            console.log("我爱学习");
+        });
+        p.sayHello();
+        console.log(typeof p);
+
+        //错误演示,没有使用new
+        // Person("MJM",17,function () {
+        //     console.log("哈哈");
+        // });
+        // //此时的this对象是window,
+        //     window.sayHello();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

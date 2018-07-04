@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承的使用</title>
+    <script>
+        var arr = [1,2,3];
+        console.log(Array.prototype);
+        console.log(arr.__proto__);
+        //数组的api函数都是内置构造函数Array的原型的方法，不能修改。
+
+        //如何安全的扩展一个内置对象。
+        var a = new Array();
+        function MyArray() {
+
+        }
+        //将内置数组对象赋值给自己定义数组对象的原型，使自定义的数组构造函数原型拥有内置数组原型中所有的方法
+        MyArray.prototype = a;  //相当于a充当了MyArray的原型
+        //再添加自身的一些方法
+        MyArray.prototype.sayHello = function () {
+            console.log("hello");
+        }
+        //更正原型中的构造方法
+        MyArray.prototype.constructor = MyArray;
+        a.sayHello(); //a的被修改了,a的原型及即Array指向的原型没有被修改
+        console.log(a);
+        console.log(a.__proto__);
+        // //实例化
+        var arr1 = new MyArray();
+        console.log(arr1.constructor);
+        arr1.push(1);
+        arr1.sayHello();
+        console.log(arr1);
+        console.log(MyArray.prototype);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>递归遍历</title>
+    <script>
+        window.onload = function () {
+            //需求:给页面所有的元素添加一个边框 1px pink solid
+            //遍历所有节点
+            var allChildNode = [];
+            function getChildNode(node) {
+                var nodeList = node.childNodes;//获取各种节点
+                for(var i=0; i<nodeList.length; i++) {
+                    var childNode = nodeList[i];
+                    //排除其他节点，只要当前元素节点,同时也是递归结束的条件
+                    if(1 == childNode.nodeType) {
+                        allChildNode.push(childNode);
+                        getChildNode(childNode);
+                    }
+                }
+
+            }
+            getChildNode(document.body);
+            for(var j=0; j<allChildNode.length; j++) {
+                allChildNode[j].style.border = "1px red solid";
+            }
+
+
+        }
+
+    </script>
+</head>
+<body>
+<div>1div
+    <p>1p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>2p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>3p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>4p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>5p<span>1span</span><span>2span</span><span>3span</span></p>
+</div>
+<div>2div
+    <p>1p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>2p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>3p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>4p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>5p<span>1span</span><span>2span</span><span>3span</span></p>
+</div>
+<div>3div
+    <p>1p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>2p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>3p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>4p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>5p<span>1span</span><span>2span</span><span>3span</span></p>
+</div>
+<div>4div
+    <p>1p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>2p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>3p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>4p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>5p<span>1span</span><span>2span</span><span>3span</span></p>
+</div>
+<div>5div
+    <p>1p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>2p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>3p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>4p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>5p<span>1span</span><span>2span</span><span>3span</span></p>
+</div>
+<div>6div
+    <p>1p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>2p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>3p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>4p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>5p<span>1span</span><span>2span</span><span>3span</span></p>
+</div>
+<div>7div
+    <p>1p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>2p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>3p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>4p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>5p<span>1span</span><span>2span</span><span>3span</span></p>
+</div>
+<div>8div
+    <p>1p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>2p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>3p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>4p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>5p<span>1span</span><span>2span</span><span>3span</span></p>
+</div>
+<div>9div
+    <p>1p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>2p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>3p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>4p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>5p<span>1span</span><span>2span</span><span>3span</span></p>
+</div>
+<div>10div
+    <p>1p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>2p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>3p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>4p<span>1span</span><span>2span</span><span>3span</span></p>
+    <p>5p<span>1span</span><span>2span</span><span>3span</span></p>
+</div>
+</body>
+</html>

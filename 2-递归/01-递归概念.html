@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>递归</title>
+    <script>
+        /***********递归***************
+         * 1、概念：在函数内部调用函数自己，就是递归
+         * 2、组成：递归结束条件的判断很重要
+         *
+         */
+        //例1：求1+2+3+...+n-1+n
+        function sum(n) {
+            //结束条件
+            if(1 === n) {
+                return 1;
+            }
+            return (sum(n-1)+n);
+        }
+        console.log(sum(10));
+        //例2：n!
+        function factorial(n) {
+            //结束条件
+            if(1 === n) {
+                return 1;
+            }
+            return (factorial(n-1)*n);
+        }
+        console.log(factorial(5));
+        //例3：斐波那契数组 1 1 2 3 5 8 13 ... fn-2 fn-1 fn     fn=fn-1+fn-2
+        function fibonacc(num) {
+            if(num <= 2) {
+                return 1;
+            }
+            else {
+                return (fibonacc(num-1) + fibonacc(num-2));
+            }
+        }
+        console.log(fibonacc(9));
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

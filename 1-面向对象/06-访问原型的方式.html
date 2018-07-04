@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>访问原型的方法</title>
+    <script>
+        //原型中默认有两个属性：constructor存的是对应的构造函数，__proto__存的是本身的原型地址
+        function Person(name,age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.msg = "原型";
+        //1、通过构造函数访问原型 Person.prototype
+        console.log(Person.prototype);
+        //2、通过对象访问原型 __proto__   非标准属性，一般不能使用，主要用来做调试
+        var p = new Person("mjm","18");
+        console.log(p.__proto__);
+        // 访问实例自身的构造函数
+        console.log(p.constructor);
+        /*
+        ƒ Person(name,age) {
+            this.name = name;
+            this.age = age;
+        }
+         */
+
+        var p1 = new p.constructor("zhs","20");//这里的p.constructor 就是Person构造函数
+        //为了保证构造函数、原型、对象之间的关系正常
+        //替换原型对象时，做如下操作
+        Person.prototype = {
+            constructor:Person  //一定把默认的constructor属性赋值给对应的构造函数
+        };
+        console.log(Person.prototype);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

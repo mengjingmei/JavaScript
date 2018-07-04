@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //1.函数模式
+        //this指向window全局对象
+        function test(){
+            console.log(this);
+        }
+        test();
+
+        //2.方法模式
+        //this指向调用这个方法的对象
+        var obj1 = {
+            test:function(){
+                console.log(this);
+            }
+        }
+        obj1.test();
+        //3.构造函数模式
+        //this 使用new创建出来的对象
+        function Person(){
+            console.log(this);
+        }
+        var obj =new Person();
+
+        //4.上下文模式
+        //在上下文模式中，可以修改this的值
+        //apply: 函数.apply(对象,[arg1,arg2,...,argn函数的参数列表])  //实参可以是一个数组变量，不确定情况下也可以使用
+        //call: 函数.call(对象,[agr1],[arg2],...,[argn])  //实参确定的情况下使用
+        //当对象为null和undefined时，this就是window
+        //当第一个是值类型时，会将值类型转换成相应的引用类型，给this
+
+        var name = "mjm";
+        function fn(a,b) {
+
+            console.log(this.name+a+b);
+        }
+        var obj = {
+            name:"zhs"
+        }
+        fn(1,2);//mjm12  //this为window
+        fn.apply(obj,[1,2]);//zhs12  修改this对象为obj
+        fn.call(obj,[3],[4]);//zhs34  修改this对象为obj
+
+        //案例：将传入的参数打印，参数之间用-相互连接
+
+        function foo() {
+
+            //伪数组不具有join方法，所以这个时候就要考虑去借用一下数组的join方法
+//            var str = Array.prototype.join.apply(arguments,["-"]);
+            var str = [].join.apply(arguments,["-"]);
+            return str;
+        }
+        var str = foo(1, 3, "abc", "ffff", 99) // 1-3-abc-ffff-99
+        console.log(str);
+
+
+        //案例2
+        window.onload = function () {
+            //案例：给页面上所有的 div 和 p 标签添加背景色
+            var divs = document.getElementsByTagName("div");
+            var ps = document.getElementsByTagName("p");
+
+            var arr = [];
+            //little tip:  push方法可以传多个参数
+            //arr.push(1,2,3,4,4,5)
+
+            arr.push.apply(arr,divs);
+            arr.push.apply(arr,ps);
+
+            //如果使用arr.push()直接把divs传进来
+            //那么相当于在arr中的第一个元素中存储了一个divs数组
+            //但是我们需要把divs中的每一个元素单独的存入arr中
+            //所以需要调用push方法的如下形式  push(1,2,4,4,5)
+            //要实现这个形式的调用，就用到了apply方法的第二个参数的特性
+            //在调用的时候，会第二个参数的数组，拆成每一个元素以（a,b,c,d,e,f,g） 传入函数
+
+            //相当于 arr.push(divs[0],divs[1],divs[..])
+//            arr.push(divs)
+
+
+
+            for (var k = 0; k < arr.length; k++) {
+                var ele = arr[k];
+                ele.style.backgroundColor = "yellow";
+            }
+
+//            for (var i = 0; i < divs.length; i++) {
+//                var div = divs[i];
+//                div.style.backgroundColor = "#ccc";
+//            }
+//
+//            for (var j = 0; j < ps.length; j++) {
+//                var p = ps[j];
+//                p.style.backgroundColor = "#ccc";
+//            }
+        }
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<p></p>
+<p></p>
+<p></p>
+
+</body>
+</html>

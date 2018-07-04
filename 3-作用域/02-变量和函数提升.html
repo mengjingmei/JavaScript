@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*************预解析************
+         *在函数执行之前，预解析，提升以var申明的变量 和 function声明的函数(函数表达式不会被提升)，但是不提升变量赋值和函数执行
+         *
+         */
+        func();  //不会报错
+        function func() {
+            console.log(111);
+        }
+
+        console.log(a); //undefined
+        var a = 10;
+        //以上两句会解析为：
+        // var a;
+        // console.log(a); //undefined
+        // a = 10;
+
+        //变量和函数同名
+            alert(foo);//function foo() {}
+            function foo() {
+            }
+            var foo = 2;
+            alert(foo);//2
+
+
+        //1、函数名和变量名相同时，只会提升函数，不会提升变量名，相同的函数，后面的会覆盖前面的
+        //会预解析如下：
+            /*
+            function foo() {
+            }
+            alert(foo);
+            foo = 2;
+            alert(foo);
+            */
+
+        //2、变量名提升是分作用域的,变量只能提升到当前作用域的最前面。函数内的也只能提升到函数最前面
+        var num = 456;
+        function f1() {
+            console.log(num);
+            var num = 10;
+        }
+        console.log(num);
+        f1();
+        //解析后：
+        /*
+            var num;
+            function f1() {
+                var num;  //函数内的也只能提升到函数最前面
+                console.log(num); //undefined
+                num = 10;
+            }
+            num = 456;
+            console.log(num); //456
+            f1();
+        */
+
+        //3、函数表达式不会被提升
+        func();//报错：func is not a function
+        var func = function () {
+            console.log(22);
+        };
+        //预解析后：
+        /*
+            var func;
+            func();  //undefined
+            func = function () {
+                console.log(22);
+            };
+        */
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
